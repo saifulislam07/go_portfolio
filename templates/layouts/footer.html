@@ -1,0 +1,26 @@
+{{ define "layouts/footer.html" }}
+<footer class="main-footer text-center">
+    <strong>© 2025 Portfolio Admin.</strong> All rights reserved.
+</footer>
+</div>
+<script src="/static/adminlte/plugins/jquery/jquery.min.js"></script>
+<script src="/static/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/static/adminlte/dist/js/adminlte.min.js"></script>
+<script src="/static/adminlte/plugins/summernote/summernote-bs4.min.js"></script>
+<script>
+    $(function () {
+        // Summernote
+        $('#summernote').summernote()
+
+        // CodeMirror
+        CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+            mode: "htmlmixed",
+            theme: "monokai"
+        });
+    })
+</script>
+</body>
+
+</html>
+
+{{ end }}

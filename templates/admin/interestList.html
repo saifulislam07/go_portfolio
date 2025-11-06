@@ -1,0 +1,46 @@
+{{ define "admin/interestList.html" }}
+{{ template "layouts/header.html" . }}
+{{ with .interests }}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    Interest List
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Interest</th>
+                                <th>Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{ range . }}
+                                <tr>
+                            
+                                    <td>{{ .Interest }}</td>
+                                    <td>
+                                       
+                                        <a href="/interests/edit/{{ .ID }}" class="btn btn-sm btn-outline-success">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <form action="/interests/{{ .ID }}/delete" method="POST" class="d-inline">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {{ end }}
+                         </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
+{{ template "layouts/footer.html" . }}
+{{ end }}

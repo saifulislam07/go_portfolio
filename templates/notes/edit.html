@@ -1,0 +1,38 @@
+{{ define "notes/edit.html" }}
+{{ template "layouts/header.html" . }}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Edi Note</h5>
+                    <a href="/notes" class="btn btn-light btn-sm">All Notes</a>
+                </div>
+                <div class="card-body">
+                    {{ range . }}
+                    <form class="row g-3" action="/notes/edit/{{ .ID }}" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="name" name="name" required
+                                placeholder="Enter note title" value="{{ .Name }}">
+                            <div id="nameHelp" class="form-text">Title of the note</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Content</label>
+                            <textarea class="form-control" id="content" name="content" rows="4"
+                                placeholder="Write your note here...">{{ .Content }}</textarea>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Update Note</button>
+                        </div>
+                    </form>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ template "layouts/footer.html" . }}
+{{ end }}

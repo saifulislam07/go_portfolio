@@ -1,0 +1,56 @@
+{{ define "notes/index.html" }}
+{{ template "layouts/header.html" . }}
+
+
+{{ with .notes }}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 l-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Create a New Note</h5>
+                    <a href="/notes/new" class="btn btn-light btn-sm">Create Note</a>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered">
+                        <thead class="table-primary">
+                            <tr>
+                                <th width="20%">Name</th>
+                                <th width="60%">Content</th>
+                                <th width="12%">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{ range . }}
+                            <tr>
+                                <td>{{ .Name }}</td>
+                                <td>{{ .Content }}</td>
+                                <td>
+                                    <a href="/notes/{{ .ID }}" class="btn btn-sm btn-outline-primary" title="View Note">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    <a href="/notes/edit/{{ .ID }}" class="btn btn-sm btn-outline-success">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <form action="/notes/{{ .ID }}/delete" method="POST" class="d-inline">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
+
+
+                                </td>
+                            </tr>
+                            {{ end }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
+
+
+{{ template "layouts/footer.html" . }}
+{{ end }}

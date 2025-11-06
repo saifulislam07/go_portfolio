@@ -1,0 +1,28 @@
+{{ define "admin/skils.html" }}
+{{ template "layouts/header.html" . }}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary">
+                    Skils
+                </div>
+                <div class="card-body">
+                    <form action="/skils" method="POST" >
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Skils</label>
+                                <input class="form-control" name="skils" value="{{ .skils }}" placeholder="Type skils use # tag">
+                            </div>
+                       
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ template "layouts/footer.html" . }}
+{{ end }}

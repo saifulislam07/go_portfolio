@@ -1,0 +1,44 @@
+{{ define "admin/about.html" }}
+{{ template "layouts/header.html" . }}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary">
+                    About Me
+                </div>
+                <div class="card-body">
+                    <form action="/about" method="POST"  enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">About Me</label>
+                                <textarea id="summernote" name="about_me">{{ .AboutMe }}</textarea>
+                            </div>
+                          
+                            <div class="form-group">
+                                <label for="exampleInputFile">About Image</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" name="about_image" class="custom-file-input" id="exampleInputFile">
+                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Upload</span>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                <img src="/{{ .AboutImage }}" class="img-fluid mt-1" style="max-width:100px;">
+                            </div>
+                    
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </div> 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ template "layouts/footer.html" . }}
+{{ end }}
