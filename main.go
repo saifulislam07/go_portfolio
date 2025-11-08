@@ -58,7 +58,9 @@ func main() {
 	r.POST("/portfolios/edit/:id", controllers.PortfoliosUpdate)
 	r.POST("/portfolios/:id/delete", controllers.PortfoliosDelete)
 
-	r.GET("/contact/new", controllers.Contact)
+	r.GET("/contact", controllers.Contact)
+	r.POST("/contact/update-status/:id", controllers.ContactStatusUpdate)
+
 	r.GET("/social-medias/new", controllers.SocialMedias)
 	r.GET("/resume/new", controllers.Resume)
 	r.GET("/clients/new", controllers.Clients)

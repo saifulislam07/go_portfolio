@@ -319,9 +319,46 @@ func PortfoliosDelete(c *gin.Context) {
 }
 
 func Contact(c *gin.Context) {
+	var contacts []models.Contacts
+
+	if err := models.DB.Order("id desc").Find(&contacts).Error; err != nil {
+		c.String(http.StatusInternalServerError, fmt.Sprintf("Error fetching contacts: %v", err))
+		return
+	}
+
 	c.HTML(http.StatusOK, "admin/contact.html", gin.H{
-		"title": "Contact",
+		"title":    "Contact List",
+		"Contacts": contacts,
 	})
+
+}
+
+func ContactStatusUpdate(c *gin.Context) {
+	id := c.Param("id")
+	var contact models.Contacts
+
+	// Find the existing contact
+	if err := models.DB.First(&contact, id).Error; err != nil {
+		c.String(http.StatusNotFound, "Contact not found")
+		return
+	}
+
+	// Get new status from form
+	newStatus := c.PostForm("status")
+	if newStatus != "pending" && newStatus != "read" && newStatus != "cancelled" {
+		c.String(http.StatusBadRequest, "Invalid status")
+		return
+	}
+
+	// Update the status
+	contact.Status = newStatus
+	if err := models.DB.Save(&contact).Error; err != nil {
+		c.String(http.StatusInternalServerError, "Failed to update status")
+		return
+	}
+
+	// Redirect back to contacts page
+	c.Redirect(http.StatusSeeOther, "/contact")
 }
 
 func SocialMedias(c *gin.Context) {

@@ -27,5 +27,5 @@ func DBMigrate() {
 	DB.AutoMigrate(&Skils{})
 	DB.AutoMigrate(&Interests{})
 	DB.AutoMigrate(&Portfolios{})
-
+	DB.AutoMigrate(&Contacts{})
 }
