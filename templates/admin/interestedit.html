@@ -1,0 +1,28 @@
+{{ define "admin/interestedit.html" }}
+{{ template "layouts/header.html" . }}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary">
+                    Interests
+                </div>
+                <div class="card-body">
+                    {{ range . }}
+                    <form class="row g-3" action="/interests/edit/{{ .ID }}" method="POST">
+                        <div id="interests-wrapper">
+                            <div class="form-group input-group mb-2">
+                                <input type="text" class="form-control" name="interest" value="{{ .Interest }}" placeholder="Type interest">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Update</button>
+                    </form>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ template "layouts/footer.html" . }}
+{{ end }}

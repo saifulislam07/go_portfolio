@@ -44,14 +44,20 @@ func main() {
 	r.GET("/skils/new", controllers.Skils)
 	r.POST("/skils", controllers.SkilCreate)
 
-	r.GET("/InterestList", controllers.InterestList)
+	r.GET("/interestList", controllers.InterestList)
 	r.GET("/interests/new", controllers.Interests)
 	r.POST("/interests", controllers.InterestCreate)
 	r.GET("/interests/edit/:id", controllers.InterestEdit)
 	r.POST("/interests/edit/:id", controllers.InterestUpdate)
 	r.POST("/interests/:id/delete", controllers.InterestDelete)
 
+	r.GET("/portfolioList", controllers.PortfolioList)
 	r.GET("/portfolios/new", controllers.Portfolios)
+	r.POST("/portfolios", controllers.PortfoliosCreate)
+	r.GET("/portfolios/edit/:id", controllers.PortfoliosEdit)
+	r.POST("/portfolios/edit/:id", controllers.PortfoliosUpdate)
+	r.POST("/portfolios/:id/delete", controllers.PortfoliosDelete)
+
 	r.GET("/contact/new", controllers.Contact)
 	r.GET("/social-medias/new", controllers.SocialMedias)
 	r.GET("/resume/new", controllers.Resume)

@@ -1,0 +1,30 @@
+{{ define "admin/portfolioedit.html" }}
+{{ template "layouts/header.html" . }}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary">
+                    Portfolio Edit
+                </div>
+                <div class="card-body">
+                    {{ range . }}
+                    <form class="row g-3" action="/portfolios/edit/{{ .ID }}" method="POST" enctype="multipart/form-data">
+                        <div id="interests-wrapper">
+                            <div class="form-group input-group mb-2">
+                                <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                <img src="/{{ .Image }}" class="img-fluid mt-1" style="max-width:100px;">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2">Update</button>
+                    </form>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ template "layouts/footer.html" . }}
+{{ end }}
